@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Miss Purnea</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+     <script src="{% static 'owl.carousel.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.theme.default.min.css' %}">
+    <style>
+        #nav a {
+            color: floralwhite;
+            text-transform: uppercase;
+            margin: 0 15px;
+            float: right;
+        }
+        #text h1{
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            color: white;
+            font-family: Inconsolata;
+            text-shadow: black;
+        }
+        #text p{
+            position: absolute;
+            top: 40%;
+            font-size: 18px;
+            color: burlywood;
+        }
+        .col-lg-4:hover .card{
+            filter: grayscale(100%);
+        }
+
+    </style>
+</head>
+<body style="background: lavender">
+{% block navbar %}
+    <div class="navbar navbar-expand-lg navbar-dark" style="position: absolute; top: 0%; z-index: 10" id="nav">
+        <a href="" class="navbar-brand"><strong>Miss</strong></a>
+        <ul class="navbar-nav ml-auto">
+             <li class="nav-item"><a href="{% url 'home' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Home</strong></a></li>
+             <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Profile</strong></a></li>
+             <li class="nav-item"><a href="{% url 'result' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Result</strong></a></li>
+             <li class="nav-item"><a href="" class="nav-link text-light text-uppercase ml-5"> <strong>Gallery</strong></a></li>
+             <li class="nav-item"><a href="" class="nav-link text-light text-uppercase ml-5"> <strong>More</strong></a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block jumbo %}
+    {% load static %}
+    <img src="{% static 'bizoffashion5reasons-hero.jpg' %}" alt="" style="background-size: cover; width: 100%;" height="600px">
+    <div id="text">
+        <h1 style="font-size: 60px">Welcome to Miss Purnea</h1>
+        <p class="text-center pl-5 pr-5 "> Miss Purnea or Femina Miss Purnea is a Regional beauty pageant in India that annually selects representatives to compete in Miss BIHAR, one of the Big Four major international beauty pageants. It is organised by Femina, a women's magazine published by The Times Group</p>
+    </div>
+{% endblock %}
+{% block container %}
+    <div class="container mt-3 mb-3" style="-webkit-filter: grayscale(0%)">
+        <h1 class="text-center" style="color: #721c24; font-family: 'Lucida Fax'">About Us</h1>
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <a href="{% url 'profile' %}" class="text-decoration-none text-muted">
+                <div class="card">
+                    <img src="{% static 'unnamed.jpg' %}" height="200px" alt="">
+                    <div class="card-body">
+                        <h3 style="font-family: 'Bell MT'; color: #721c24" class="text-center"><strong>Your Profile</strong></h3>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a href="{% url 'vote' %}" class="text-decoration-none text-muted">
+                    <div class="card">
+                        <img src="{% static 'maxresdefault.jpg' %}" alt="" height="200px">
+                        <div class="card-body">
+                            <h3 style="font-family: 'Bell MT'; color: #721c24" class="text-center"><strong>Vote Now</strong></h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a href="" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static '51c00c8a-071c-4db9-adeb-c5388c348103.png' %}" alt="" height="200px" width="100%">
+                        <div class="card-body">
+                            <h3 style="font-family: 'Bell MT'; color: #721c24" class="text-center"><strong>Gallery</strong></h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<script>
+
+</script>
+</body>
+</html>

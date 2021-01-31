@@ -1,0 +1,22 @@
+{% extends 'user/index.html' %}
+
+
+{% block jumbo %}
+
+{% endblock %}
+{% block container %}
+    <div class="container">
+    <h1 class="text-center mt-3" style="color: #721c24; font-family: 'Lucida Fax'">SHOW TIME</h1>
+        <div class="row">
+            {% for contestant in contestants %}
+                <div class="card">
+                    <img src="{{ contestant.image.url }}" alt="" height="130px" width="130px" class="m-5">
+                    <h5 class=" text-center">Total Votes - {{ contestant.num_votes }}</h5>
+                </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

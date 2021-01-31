@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Miss Purnea</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+     <script src="{% static 'owl.carousel.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.theme.default.min.css' %}">
+    <style>
+        .col-lg-3:hover .image{
+            opacity: 0.3;
+        }
+        .card:hover .overlay{
+            opacity: 1;
+        }
+        .overlay{
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%)
+        }
+        .image{
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: 250px;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+        .text{
+            color: black;
+            font-size: 25px;
+            padding: 16px 32px;
+        }
+    </style>
+</head>
+<body style="background: lavender">
+{% block navbar %}
+    <div class="navbar navbar-expand-lg navbar-dark" style="background: #721c24">
+        <a href="" class="navbar-brand"><strong>Miss</strong></a>
+        <ul class="navbar-nav ml-auto">
+             <li class="nav-item"><a href="{% url 'home' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Home</strong></a></li>
+             <li class="nav-item"><a href="{% url 'contestant' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Add Profile</strong></a></li>
+             <li class="nav-item"><a href="" class="nav-link text-light text-uppercase ml-5"> <strong>More</strong></a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block jumbo %}
+    {% load static %}
+    <img src="{% static 'banner4.jpg' %}" alt="" style="background-size: cover; width: 100%;" height="400px">
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <h1 class="text-center mt-3" style="color: #721c24; font-family: 'Lucida Fax'">Our Contestant</h1>
+        <div class="row">
+            {% for contestant in contestants %}
+                <div class="col-lg-3 mb-5 mt-3">
+                    <a href="{% url 'profile_view' contestant.id %}" id="profile">
+                        <div class="card" id="profile">
+                            <img src="{{ contestant.image.url }}" alt="" height="250px" class="image">
+                            <div class="overlay">
+                            <div class="text">{{ contestant.first_name }}{{ contestant.last_name }}</div>
+                            <p class="text-center">{{ contestant.email }}</p>
+                        </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+<script>
+
+</script>
+</body>
+</html>
+

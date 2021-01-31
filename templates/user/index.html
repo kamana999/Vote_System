@@ -1,0 +1,94 @@
+{% extends 'contestnt/index.html' %}
+{% block navbar %}
+    <div class="navbar navbar-expand-lg navbar-dark" style="background: #721c24">
+        <a href="{% url 'home' %}" class="navbar-brand"><strong>Miss</strong></a>
+        <ul class="navbar-nav ml-auto">
+             <li class="nav-item"><a href="{% url 'vote' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Home</strong></a></li>
+             <li class="nav-item"><a href="{% url 'result' %}" class="nav-link text-light text-uppercase ml-5"> <strong>Result</strong></a></li>
+            {% if 'login' not in request.session %}
+                <li class="nav-item"><a href="#login" class="nav-link text-light text-uppercase ml-5" data-toggle="modal"> <strong>Login</strong></a></li>
+             <li class="nav-item"><a href="#signup" class="nav-link text-light text-uppercase ml-5" data-toggle="modal"> <strong>SignUp</strong></a></li>
+            {% else %}
+                 <li class="nav-item"><a href="" class="nav-link text-white ml-3"> <strong>{{user.name }}</strong></a></li>
+                 <a href="{% url 'logout' %}" class="nav-link text-light text-uppercase ml-5" >LOGOUT</a>
+            {% endif %}
+        </ul>
+    </div>
+
+    {% load crispy_forms_tags %}
+    <div class="modal fade" id="signup">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header  text-white bg-dark">Create New Account</div>
+                <div class="modal-body">
+                    <form action="{% url 'signup' %}" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-dark">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-dark" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">Login Here</div>
+            <div class="modal-body">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {{ login_form|crispy }}
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-dark">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block jumbo %}
+
+{% endblock %}
+{% block container %}
+    <div class="container">
+        <h1 class="text-center mt-3" style="color: #721c24; font-family: 'Lucida Fax'">Our Contestant</h1>
+        <div class="row mt-3">
+            {% for contestant in contestants %}
+                <div class="col-lg-4 mt-3">
+                <a href="{% url 'profile_view' contestant.id %}" class="text-decoration-none text-muted">
+                <div class="card">
+                    <img src="{{ contestant.image.url }}" height="300px" alt="" width="100%">
+                    <div class="card-body">
+                        <h3 style="font-family: 'Bell MT'; color: #721c24"><strong>{{ contestant.first_name }}{{ contestant.last_name }}</strong></h3>
+                        <h6>Total Votes - {{ contestant.num_votes }} votes</h6>
+                        {% if 'login' not in request.session %}
+                        <a  href="#signup" data-toggle="modal" class="btn btn-sm rounded-pill" style="background: #721c24; color: white; margin-left: 70%; margin-top:-45%; margin-bottom: 0%">Vote Now</a>
+                        {% else %}
+                            {% if user.u_status == 1 %}
+                                <a  href="{% url 'vote_now' contestant.id %}" class="btn btn-sm rounded-pill disabled" style="background: #721c24; color: white; margin-left: 70%; margin-top:-45%; margin-bottom: 0%">Vote Now</a>
+                                {% else %}
+                                <a  href="{% url 'vote_now' contestant.id %}" class="btn btn-sm rounded-pill" style="background: #721c24; color: white; margin-left: 70%; margin-top:-45%; margin-bottom: 0%">Vote Now</a>
+                            {% endif %}
+
+                        {% endif %}
+                    </div>
+
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+{% endblock %}
